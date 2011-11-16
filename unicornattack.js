@@ -27,6 +27,8 @@ function unikeyPress(ev){
             && uniBuffer[4]==t
             && uniBuffer[5]==a){
 //        alert("ATTACK!");
+        uniContext.canvas.width = window.innerWidth;
+        uniContext.canvas.height = window.innerHeight;
         uniAttack();
     }
 }
@@ -38,7 +40,8 @@ function uniAttack(){
     uniAllDudes = uniMakeDudes(500);
 //    temp = new uniCorn(100, 200, .1, "rgba(200, 200, 200, 0.5)", 1);
 //    alert("temp BLARG values = "+temp.pos_x);
-    setInterval(uniDrawDudes,1000/30); 
+    //setInterval(uniDrawDudes,1000/30); 
+    uniAnimate();    
 
 //    uni1 = new uniCorn(100, 200, .10, "rgba(200, 10, 10, 0.5)", 1);
 //    alert("uni1 angle = "+uni1.currentRadians);
@@ -102,3 +105,18 @@ function uniCorn(x, y, angular_speed, rgba, scale_factor){
     }
 }
 
+window.requestAnimationFrame = (function(){
+    return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame    ||
+    window.oRequestAnimationFrame      ||
+    window.msRequestAnimationFrame     ||
+    function( callback, element){
+        window.setTimeout(callback, 1000/60);
+    };
+}) ();
+
+function uniAnimate(){
+    window.requestAnimationFrame(uniAnimate);
+    uniDrawDudes();
+}
