@@ -33,7 +33,7 @@ if (keyPressed == false){
     uniBuffer.unshift(ev.keyCode);
     uniBuffer.pop();
     keyPressed = true;
-    console.log("key pressed"+ev.keyCode);
+    //console.log("key pressed"+ev.keyCode);
     if(uniBuffer[0]==a
             && uniBuffer[1]==b
             && uniBuffer[2]==right
