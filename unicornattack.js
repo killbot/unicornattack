@@ -53,10 +53,10 @@ function uniMakeDudes(n){
     var num = n;
     var allThemShapes = [];
     for (i=0; i<num; i++){
-        var x = Math.random()*uniCanvas.width;    //between 0 and canvas width
-        var y = Math.random()*uniCanvas.height;   //between 0 and canvas height
+        var x = Math.random()*uniCanvas.width-50;    //between 0 and canvas width
+        var y = Math.random()*uniCanvas.height-50;   //between 0 and canvas height
         var omega = Math.random()*Math.PI/3-Math.PI/6;      //between -Pi/6 and +Pi/6 degrees
-        var scale = Math.random()*3.7+0.3;              //between 0.3 and 4.0, for scaling size randomly
+        var scale = (Math.random()*1.6+0.4);              //between 1.6 and 0.4, for scaling size randomly
         var red = Math.floor(Math.random()*255);
         var green = Math.floor(Math.random()*255);
         var blue = Math.floor(Math.random()*255);
@@ -89,14 +89,16 @@ function uniCorn(x, y, angular_speed, rgba, scale_factor){
     var pos_x = x;
     var pos_y = y;
     var currentRadians = 0.0;
-    var width = 30*scale_factor;
-    var height = 30*scale_factor;
+    var width = scale_factor;
+    var height = scale_factor;
     var angularVelocity = angular_speed;
     var color = rgba;
     this.draw = function(){
         currentRadians += angularVelocity;
         uniContext.save();
-        uniContext.translate(pos_x+50, pos_y+50);
+        uniContext.translate(pos_x, pos_y);
+        uniContext.scale(1/scale_factor, 1/scale_factor);
+        uniContext.translate(50, 50);
         uniContext.rotate(currentRadians);
         uniContext.translate(-50, -50);
         uniContext.fillStyle = color;
