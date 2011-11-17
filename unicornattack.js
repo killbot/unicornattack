@@ -2,34 +2,53 @@ var uniCanvas;
 var uniContext;
 var uniBuffer = new Array(6);
 var uniAllDudes = new Array();
-var uniNumberOfDudes = 400;
+var uniNumberOfDudes = 200;
+var keyPressed = false;
 
 function unicornListener(){
     uniCanvas = document.getElementById("unicornCanvas");
     uniContext = uniCanvas.getContext("2d");
-    uniBuffer = [0,0];
-    window.addEventListener("keypress", unikeyPress, false);
+    uniBuffer = [0,0,0,0,0,0,0,0,0,0];
+    //window.addEventListener("keypress", unikeyPress, false);
+    window.addEventListener("keydown", unikeyPress, false);
+    window.addEventListener("keyup", unikeyUp, false);
 }
 
+function unikeyUp(ev){
+    keyPressed = false;
+}
 
 function unikeyPress(ev){
 //    alert(ev.keyCode);
-    var a = 97;
-    var t = 116;
-    var c = 99;
-    var k = 107;
+if (keyPressed == false){
+    var a = 65;
+    var b = 66;
+    var t = 84;
+    var c = 67;
+    var k = 75;
+    var up = 38;
+    var down = 40;
+    var left = 37;
+    var right = 39;
     uniBuffer.unshift(ev.keyCode);
-//    alert("key pressed"+ev.keyCode);
-    if(uniBuffer[0]==k 
-            && uniBuffer[1]==c
-            && uniBuffer[2]==a
-            && uniBuffer[3]==t
-            && uniBuffer[4]==t
-            && uniBuffer[5]==a){
+    uniBuffer.pop();
+    keyPressed = true;
+    console.log("key pressed"+ev.keyCode);
+    if(uniBuffer[0]==a
+            && uniBuffer[1]==b
+            && uniBuffer[2]==right
+            && uniBuffer[3]==left
+            && uniBuffer[4]==right
+            && uniBuffer[5]==left
+            && uniBuffer[6]==down
+            && uniBuffer[7]==down
+            && uniBuffer[8]==up
+            && uniBuffer[9]==up){
 //        alert("ATTACK!");
         uniContext.canvas.width = window.innerWidth;
         uniContext.canvas.height = window.innerHeight;
         uniAttack();
+}
     }
 }
 function uniAttack(){
